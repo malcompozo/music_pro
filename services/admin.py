@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Service
+from .models import Productos
 
 # Register your models here.
-class ServiceAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('created','updated')
 
-admin.site.register(Service, ServiceAdmin)
+admin.site.register(Productos, ProductAdmin)
 

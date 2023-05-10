@@ -23,7 +23,7 @@ urlpatterns = [
     #path del services
     path('services/', include('services.urls')),
     #path del blog
-    path('blog/', include('blog.urls')),
+    #path('blog/', include('blog.urls')),
     #path del admin
     path('admin/', admin.site.urls),
 ]
