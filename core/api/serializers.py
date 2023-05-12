@@ -18,7 +18,7 @@ class ProductoSerializer(serializers.Serializer):
     nom_producto = serializers.CharField()
     subtitle = serializers.CharField()
     descripcion = serializers.CharField()
-    image = serializers.ImageField()
+    image = serializers.CharField()
     value = serializers.IntegerField() 
     created = serializers.DateTimeField ()
     updated = serializers.DateTimeField ()
@@ -32,3 +32,5 @@ class ProductoSerializer(serializers.Serializer):
         instance.descripcion = validated_data.get('descripcion', instance.descripcion)
         instance.image = validated_data.get('image', instance.image)
         instance.value = validated_data.get('value', instance.value)
+        instance.save()
+        return instance
