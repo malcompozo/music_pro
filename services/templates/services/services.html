@@ -25,12 +25,12 @@
         <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{product.image.url}}" alt="">
         <div class="product-item-description d-flex ml-auto">
           <div class="bg-faded p-5 rounded">
-            <p class="mb-0">{{product.descripcion}}</p>
-            <p class="mb-0">{{product.value}}</p>
+            <p class="mb-0"><strong>Descripción: </strong>{{product.descripcion}}</p>
+            <p class="mb-0"><strong>Precio: </strong>${{product.value}}</p>
           </div>
         </div>
       </div>
-    </div>
+    </div>  
   </section>
 {% endfor %}  
 
