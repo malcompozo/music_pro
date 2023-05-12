@@ -18,7 +18,7 @@ class ProductoSerializer(serializers.Serializer):
     nom_producto = serializers.CharField()
     subtitle = serializers.CharField()
     descripcion = serializers.CharField()
-    image = serializers.ImageField()
+    image = serializers.CharField()
     value = serializers.IntegerField() 
     created = serializers.DateTimeField ()
     updated = serializers.DateTimeField ()
