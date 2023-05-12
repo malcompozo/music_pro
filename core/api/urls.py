@@ -8,8 +8,8 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     #path de admin djangoRest
-    path('/', include(router.urls)),
+    path('', include(router.urls)),
     path('productos/', views.get_products, name='productos' ),
-    path('<int:pk>', views.get_products_id, name='productos_id' ),
+    path('productos/<int:pk>', views.get_products_id, name='productos_id' ),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
