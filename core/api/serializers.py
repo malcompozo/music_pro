@@ -13,6 +13,13 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ['url', 'name']
 
+class CategorySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    nom_category = serializers.CharField()
+    description = serializers.CharField()
+    created = serializers.DateTimeField ()
+    updated = serializers.DateTimeField ()
+
 class ProductoSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     nom_producto = serializers.CharField()
@@ -22,6 +29,7 @@ class ProductoSerializer(serializers.Serializer):
     value = serializers.IntegerField() 
     created = serializers.DateTimeField ()
     updated = serializers.DateTimeField ()
+    #categoria = serializers.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Categoria')
 
     def create(self, validated_data):
         return Productos.objects.create(**validated_data)
