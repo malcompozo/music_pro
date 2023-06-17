@@ -1,5 +1,5 @@
-from services.models import Productos
-from .serializers import UserSerializer, GroupSerializer, ProductoSerializer
+from services.models import Productos, Category
+from .serializers import UserSerializer, GroupSerializer, ProductoSerializer, CategorySerializer
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -51,6 +51,53 @@ def get_products_id (request, pk):
         
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+
+@api_view(['GET', 'POST'])
+def get_categories (request):
+    if request.method == 'GET':
+        try:
+            category = Category.objects.all()
+            serializer = CategorySerializer(category, many=True)
+            return Response(serializer.data)
+        except Category.DoesNotExist:
+            return Response({'ERROR': 'NO EXISTEN PRODUCTOS INGRESADOS'}, status=status.HTTP_404_NOT_FOUND) # no encontrado
+    
+    if request.method == 'POST':
+        de_serializer = CategorySerializer(data=request.data)
+        if de_serializer.is_valid():
+            de_serializer.save()
+            return Response(de_serializer.data)
+        else:
+            return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST) # envio de tipo de dato erroneo
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def get_category_id (request, pk):
+    if request.method == 'GET':
+        try:
+            category = Category.objects.get(pk=pk)
+            serializer = CategorySerializer(category)
+            return Response(serializer.data)
+        except Category.DoesNotExist:
+            return Response({'ERROR': 'NO EXISTEN PRODUCTOS CON ESE ID'}, status=status.HTTP_404_NOT_FOUND) # no encontrado
+    
+    if request.method == 'PUT': 
+        category = Category.objects.get(pk=pk)
+        de_serializer = CategorySerializer(category, data=request.data)
+        if de_serializer.is_valid():
+            de_serializer.save()
+            return Response(de_serializer.data)
+        else:
+            return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST) # envio de tipo de dato erroneo
+           
+    if request.method == 'DELETE': 
+        try:    
+            producto = Category.objects.get(pk=pk)
+            producto.delete()
+        except Category.DoesNotExist:
+            return Response({'ERROR':' El registro no existe'}, status=status.HTTP_404_NOT_FOUND)
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
