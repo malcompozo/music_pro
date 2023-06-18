@@ -1,5 +1,6 @@
 from rest_framework import status
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APIClient
+from django.contrib.auth.models import User
 from django.urls import reverse
 import json
 import os
@@ -8,7 +9,22 @@ from services.models import Products, Category
 from core.api.serializers import ProductsSerializer, CategorySerializer
 
 
+class SuperuserTest(APITestCase):
+	def setUp(self):
+		# creando superuser de test
+		self.superuser = User.objects.create_superuser(
+			username= 'admin' ,
+			password= 'admin'
+			)
+		
+		self.client = APIClient()
+		self.client.force_authenticate(user=self.superuser)
+		
+	def test_superuser_functionality(self):
+		# URL login
+		response= self.client.get( '/api/api-auth/login/' )
 
+		self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 class CategoryAPITest(APITestCase):
 
