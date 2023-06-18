@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'services.apps.ServicesConfig',
     'rest_framework',
+    'drf_yasg',
 ]
 
 #CREANDO ACCESO API

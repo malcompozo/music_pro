@@ -16,12 +16,12 @@ class Category(models.Model):
         return self.nom_category
 
 
-class Productos(models.Model):
+class Products(models.Model):
     id = models.IntegerField(primary_key = True)
-    nom_producto = models.CharField(max_length=200, verbose_name='Titulo')
+    nom_product = models.CharField(max_length=200, verbose_name='Titulo')
     subtitle = models.CharField(max_length=200, verbose_name='Subtitulo')
     descripcion = models.CharField(max_length=500,verbose_name='Contenido')
-    image = models.ImageField(verbose_name='Imagen', upload_to='services')
+    image = models.CharField(max_length=200,verbose_name='Imagen')
     value = models.IntegerField(verbose_name='Valor') 
     created = models.DateTimeField (auto_now_add=True, verbose_name='Fecha de creación')
     updated = models.DateTimeField (auto_now=True, verbose_name='Actualización')
@@ -33,5 +33,5 @@ class Productos(models.Model):
         #ordering = ['-created']
 
     def __str__(self):
-        return self.nom_producto
+        return self.nom_product
     
