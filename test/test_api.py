@@ -13,7 +13,7 @@ class SuperuserTest(APITestCase):
 	def setUp(self):
 		# creando superuser de test
 		self.superuser = User.objects.create_superuser(
-			username= 'admin' ,
+			username= 'admin',
 			password= 'admin'
 			)
 		
