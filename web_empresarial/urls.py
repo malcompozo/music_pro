@@ -22,10 +22,8 @@ urlpatterns = [
     path('', include('core.urls')),
     #path del services
     path('products/', include('services.urls')),
-    #path del blog
-    #path('blog/', include('blog.urls')),
     #path del admin
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
 ]
 
 if settings.DEBUG:
