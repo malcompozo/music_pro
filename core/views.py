@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import requests
+from datetime import datetime, date, time, timedelta
 
 # Create your views here.
 def home(request):
@@ -16,5 +17,3 @@ def contact(request):
 
 def sample(request):
         return render(request, "core/sample.html")
-
-
