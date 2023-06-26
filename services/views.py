@@ -2,25 +2,16 @@ from django.shortcuts import render
 from datetime import datetime, date, time, timedelta
 import requests
 
-# Create your views here.
-def products(request):
-        url = 'http://localhost:8000/api/productos'  # URL de la API en localhost
-        response = requests.get(url)
-
-        if response.status_code == 200:
-                products = response.json()  # Obtener los datos de la respuesta en formato JSON
-                print(products)
-                return render(request, "services/services.html",{'products':products})
-        
-        else:
-                error_msg = f"Error al consumir la API: {response.status_code}"
-                return render(request, "services/services.html",{'error':error_msg})
-
 def apis(request):
+        # Parámetros
         arrayData = {}
-        urlCmf = 'https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=02f0f7e74d22234ae406894dddbc6158bb66b8ab&formato=json'  # URL CMF
-        responseCmf = requests.get(urlCmf)
+        apikey = '02f0f7e74d22234ae406894dddbc6158bb66b8ab'
+        formato = 'json'
+
+        urlCmf = f'https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey={apikey}&formato={formato}'  # URL CMF
         urlProd = 'http://localhost:8000/api/productos'  # URL de la API en localhost
+        
+        responseCmf = requests.get(urlCmf)
         responseProd = requests.get(urlProd)
 
         if responseCmf.status_code == 200:
@@ -56,3 +47,4 @@ def apis(request):
                 return render(request, "services/services.html",{'error':error_msg})
 
         return render(request, "services/services.html",arrayData)
+

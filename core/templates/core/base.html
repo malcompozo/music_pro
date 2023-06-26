@@ -31,7 +31,12 @@
       <span class="site-heading-upper text-primary mb-3">LLEVA TU EXPERIENCIA AL SIGUIENTE NIVEL</span>
       <span class="site-heading-lower">MUSIC PRO</span>
     </h1>
-
+    {% for precio in cmf.Dolares %}
+    <div style=" transform: translate(290%,-10%); text-align: center; background: #e6a756; width: 15%;">
+      <p class="mb-0" style="color:white;" >Dolar Actual: <strong>${{precio.Valor}}</strong></p>
+      <p class="mb-0" style="color:white;" >Fecha Actualización: <strong>${{precio.Fecha}}</strong></p>
+    </div>
+    {% endfor %}
     <!-- Navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
       <div class="container">
